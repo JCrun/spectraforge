@@ -103,5 +103,3 @@ SpectraForge 由三个独立但互补的 CLI 组成：
 - 若要制作二进制工具，可使用更新后的 `spectraforge.spec` 直接调用 `pyinstaller spectraforge.spec`。
 - 欢迎基于 `gpu_ladder` 包扩展新的分析脚本（例如额外的 CSV/DB 导出）。
 
----
-命名为 **SpectraForge**，寓意“在图形光谱中锻造数据梯队”，既贴合 GPU/光谱主题，也体现精工打造的数据流水线。若准备发布到 GitHub，可直接使用 `spectraforge` 作为仓库名；待你确认后，我可以协助补充徽章、CI 等内容。
