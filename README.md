@@ -16,11 +16,6 @@ SpectraForge 由三个独立但互补的 CLI 组成：
 - 🚀 **一键命令体验**：`pyproject.toml` 暴露 `spectraforge-*` 三个 CLI，`pip install -e .` 后即可全局使用。
 - 🧱 **开源友好结构**：`src/`-layout、`.gitignore`、明确的依赖声明，方便直接推送到 GitHub。
 
-## ?? & ????
-- GitHub ???https://github.com/JCrun/spectraforge
-- ??? CLI ??? JSON/Excel/??????? `res/` ???Git ???????????????????
-- ????????? Release ??? issue comment ???????? repo ???
-
 ## 目录结构
 ```text
 .
@@ -34,10 +29,7 @@ SpectraForge 由三个独立但互补的 CLI 组成：
 │       ├── scrape_techpowerup.py    # 主抓取器
 │       ├── retry_failed_details.py  # failed_details 补抓脚本
 │       └── export_gpu_excel.py      # Excel 阶梯图导出
-├── gpu_specs.json                   # 示例抓取结果（可替换）
-├── amd_*.json / gpu_specs--2025.json# 手工 patch / 历史列表样例
-├── gpu_ladder.xlsx                  # 导出样例（git 已忽略 *.xlsx）
-└── tmp.py                           # 合并/修补示例脚本
+└── res/
 ```
 
 ## 快速开始
@@ -57,7 +49,7 @@ SpectraForge 由三个独立但互补的 CLI 组成：
      --start-year 2015 \
      --end-year 2024 \
      --manufacturers NVIDIA AMD Intel \
-     --output data/gpu_specs.json \
+     --output res/gpu_specs.json \
      --concurrency 4 \
      --browser-fallback-on-fail
    ```
@@ -66,7 +58,7 @@ SpectraForge 由三个独立但互补的 CLI 组成：
 3. **补抓失败详情**
    ```bash
    spectraforge-retry \
-     --input data/gpu_specs.json \
+     --input res/gpu_specs.json \
      --max-retry 50 \
      --browser-fallback-on-fail
    ```
@@ -74,8 +66,8 @@ SpectraForge 由三个独立但互补的 CLI 组成：
 4. **导出 Excel 阶梯图**
    ```bash
    spectraforge-export \
-     --input data/gpu_specs.json \
-     --output output/gpu_ladder.xlsx \
+     --input res/gpu_specs.json \
+     --output res/gpu_ladder.xlsx \
      --top-n-chart 64
    ```
    导出的工作簿包含：分组排行榜 (Tier/Year/Manufacturer 等) 以及 Top-N 柱状图，可直接分享。
@@ -99,7 +91,7 @@ SpectraForge 由三个独立但互补的 CLI 组成：
 
 ## 最佳实践
 - 遵守 TechPowerUp 的网站条款，合理设置 `--delay`/`--detail-delay`，必要时手动通过防火墙验证。
-- 建议将 JSON/Excel 输出写入 `data/` 或 `output/` 目录（已通过 `.gitignore` 排除大型二进制文件）。
+- 建议将运行时导出写入 `res/` 目录（`.gitignore` 已忽略 `res/*`，保留 `res/.gitkeep`），并避免提交本地生成的 Excel 文件（`*.xlsx` 等已忽略）。
 - 若要制作二进制工具，可使用更新后的 `spectraforge.spec` 直接调用 `pyinstaller spectraforge.spec`。
 - 欢迎基于 `gpu_ladder` 包扩展新的分析脚本（例如额外的 CSV/DB 导出）。
 
