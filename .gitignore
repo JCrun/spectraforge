@@ -1,0 +1,38 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.env
+.venv/
+.env.local
+.env.*
+
+# Build artifacts
+build/
+dist/
+
+# IDE / tooling
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Playwright state
+.playwright-state.json
+
+# Local data dumps
+*.xlsx
+*.xlsm
+*.xlsb
+
+# Misc
+.tmp/
+*~
+# Runtime exports
+res/*
+!res/.gitkeep
+
